@@ -29,7 +29,8 @@ describe("server", function() {
     describe("GET", function () {
       it("should return the content of a website from the archive", function (done) {
         var fixtureName = "www.google.com";
-        var fixturePath = archive.paths.archivedSites + "/" + fixtureName;
+        var fixturePath = archive.paths.archivedSites + "/" + fixtureName; // but actually a file
+            // ../test/testdata/sites/www.google.com
 
         // Create or clear the file.
         var fd = fs.openSync(fixturePath, "w");
@@ -68,7 +69,6 @@ describe("server", function() {
               var fileContents = fs.readFileSync(archive.paths.list, 'utf8');
               expect(fileContents).to.equal(url + "\n");
             }
-
             done(err);
           });
       });
