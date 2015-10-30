@@ -10,27 +10,17 @@ exports.headers = headers = {
   'Content-Type': "text/html"
 };
 
-exports.serveAssets = function(res, asset, callback) {
-  fs.readFile(path.resolve(__dirname + "/public/index.html"), function(err, content) {
+exports.serveAssets = function(res, asset, assetType) {
+  fs.readFile(archive.paths.siteAssets + '/' + asset, function(err, content) {
         // if file is found
         if (err) {
           res.writeHead(500);
           res.end();        
         } else {
-          res.writeHead(200, {'Content-Type':'text/html'})
+          res.writeHead(200, {'Content-Type':assetType})
           res.end(content);
         }
-      })  
-  // fs.readFile(path.resolve(__dirname + "/public/index.html"), function(err, content) {
-  //       // if file is found
-  //       if (err) {
-  //         res.writeHead(500);
-  //         res.end();        
-  //       } else {
-  //         res.writeHead(200, {'Content-Type':'text/html'})
-  //         res.end(content);
-  //       }
-  //     })    
+      })    
 };
 
   // Write some code here that helps serve up your static files!
